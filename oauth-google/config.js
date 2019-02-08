@@ -31,7 +31,7 @@ passport.use(new google({
             db.save().then(user=>{
                 console.log(`new user ${user}`)
                 done(null,user)
-                axios.post("https://glacial-citadel-47306.herokuapp.com/api/UserSignUps",{email:user.email,name:user.name})
+                axios.post("https://arcane-ocean-14843.herokuapp.com/api/UserSignUps",{email:user.email,name:user.name})
                 .then(res=>console.log("saved data is"+res.data));
             }).catch(err=>console.log(err));
         }
