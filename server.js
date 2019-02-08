@@ -42,7 +42,7 @@ const reset=(email,string)=>{
         from:'foreignadmitsweb@gmail.com',
         to:email,
         subject:"Foreign Admits reset your passoword",
-        html:'<p>Click the link for Resetting your password<a href="https://blooming-beyond-63562.herokuapp.com/reset/'+string+'/'+email+'">Verify</a></p>'
+        html:'<p>Click the link for Resetting your password<a href="https://warm-inlet-93009.herokuapp.com/reset/'+string+'/'+email+'">Verify</a></p>'
     }
     transporter.sendMail(mailoption,(err,res)=>{
         if(err)
