@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const db_url = "mongodb://abhi980:suab123@ds026898.mlab.com:26898/fadmits";
+const db_url = "mongodb://googlelogin:suab123@ds127825.mlab.com:27825/googlelogin_users_foreignadmits";
 mongoose.connect(db_url).catch(err => console.log(err));
 
 const google_schema=new mongoose.Schema({name:String, email:String })
