@@ -11,8 +11,9 @@ const bodyparser=require('body-parser');
 const cron=require('node-cron');
 const datetime=require('node-datetime');
 const axios=require('axios');
+const cors=require('cors')
 
-
+app.use(cors())
 app.use(session({key:'user_sid',secret:"suab321",resave:false,saveUninitialized:false,cookie:{maxAge:1000*60*60}}))
 app.use(passport.initialize());
 app.use(passport.session());
