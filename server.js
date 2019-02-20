@@ -4,7 +4,6 @@ const app=express();
 const {router}=require('./oauth-google/route');
 const google_authentication=require('./oauth-google/config')
 const {database_google}=require('./oauth-google/db');
-const url=require('./url');
 const passport=require('passport');
 const nodemailer=require('nodemailer');
 const {meeting_model}=require('./oauth-google/db')
@@ -36,6 +35,21 @@ const transporter=nodemailer.createTransport({
         refreshToken:'1/8T99L3bbUCJsl2RuPQbtVG4kOknTC8uQzxI9mLAj7X4'
     }
 })
+
+const notify=(req,res,next)=>{
+    const mailoption={
+        from:'foreignadmitsweb@gmail.com',
+        to:req.params.email,
+        subject:"Foreign Admits Thanks for choosing us",
+        html:"<p>Thanks for trusting us with your career</p><p>We will reach back to you as soon as possible</p>"
+    }
+    transporter.sendMail(mailoption,(err,res)=>{
+        if(err)
+            res.status(400),josn(err)
+        else
+            next();
+    })
+}
 
 const reset=(email,string)=>{
     var mailoption={
@@ -132,6 +146,9 @@ app.get('/gettingdata/:email',(req,res)=>{
         //send(user,email);
         res.status(200).json(user);
     })
+})
+app.get('/sendemailtostudent/:email',notify,(req,res)=>{
+    res.status(200).json('ok');
 })
 
 
