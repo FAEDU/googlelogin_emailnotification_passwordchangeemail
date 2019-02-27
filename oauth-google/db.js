@@ -8,8 +8,15 @@ const google_model=mongoose.model("google_model",google_schema);
 
 const meeting_schema=new mongoose.Schema({email:String,date:String,time:String});
 
+const unviversity_schema=new mongoose.Schema({
+    uni_id:String,
+    count:{type:Number,default:0}
+})
+const university_model=mongoose.model("university",unviversity_schema);
+
 const meeting_model=mongoose.model("meeting",meeting_schema);
 module.exports = {
     database_google:google_model,
-    meeting_model
+    meeting_model,
+    university_model
 }

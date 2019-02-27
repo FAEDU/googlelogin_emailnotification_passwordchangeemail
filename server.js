@@ -3,7 +3,7 @@ const express=require('express');
 const app=express();
 const {router}=require('./oauth-google/route');
 const google_authentication=require('./oauth-google/config')
-const {database_google}=require('./oauth-google/db');
+const {database_google,university_model}=require('./oauth-google/db');
 const passport=require('passport');
 const nodemailer=require('nodemailer');
 const {meeting_model}=require('./oauth-google/db')
@@ -171,6 +171,42 @@ app.get('/event_reg/:email/:name',eve,(req,res)=>{
     res.status(200).json("sent");
 })
 
+
+app.get('/universityclicked/:id',(req,res)=>{
+    console.log(req.params);
+    university_model.findOne({uni_id:req.params.id}).then(user=>{
+        console.log(user)
+        university_model.findOneAndUpdate({uni_id:req.params.id},{count:user.count+1},{new:true}).then(user=>{
+            res.status(200).json(user)
+        }).catch(err=>res.status(400).json("err updating"));
+    }).catch(err=>{
+        console.log(err)
+        const db=new university_model
+        db.uni_id=req.params.id
+        db.count=1;
+        db.save().then(user=>{
+                res.status(200).json(user);
+        }).catch(err=>{res.status(400).json(err)})
+    })
+})
+
+app.get('/topuniversity',(req,res)=>{
+    university_model.find({}).then(user=>{
+        console.log(user);
+        var len=user.length;
+        for(var i=0;i<len-1;i++){
+            for(var j=i;j<len;j++){
+                if(user[j].count>user[i].count){
+                    var swap=user[i];
+                    user[i]=user[j];
+                    user[j]=swap;
+                }
+            }
+        }
+        res.status(200).json(user)
+        
+    })
+})
 
 
 
