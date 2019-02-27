@@ -52,6 +52,21 @@ const notify=(req,res,next)=>{
     })
 }
 
+const eve=(req,res,next)=>{
+    var mailoption={
+        from:'foreignadmitsweb@gmail.com',
+        to:req.params.email,
+        subject:"Foreign Admits reset your passoword",
+        html:'<p>Thanks for registering for the event'+req.params.name+'</p>'
+    }
+    transporter.sendMail(mailoption,(err,res)=>{
+        if(err)
+            res.status(400).josn(err);
+        else
+            next();
+    })
+}
+
 const reset=(email,string)=>{
     var mailoption={
         from:'foreignadmitsweb@gmail.com',
@@ -150,6 +165,10 @@ app.get('/gettingdata/:email',(req,res)=>{
 })
 app.get('/sendemailtostudent/:email',notify,(req,res)=>{
     res.status(200).json('ok');
+})
+
+app.get('/event_reg/:email/:name',eve,(req,res)=>{
+    res.status(200).josn("sent");
 })
 
 
