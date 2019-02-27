@@ -203,7 +203,11 @@ app.get('/topuniversity',(req,res)=>{
                 }
             }
         }
-        res.status(200).json(user)
+        var data=[]
+        data.push(user[0]);
+        data.push(user[1]);
+        data.push(user[2]);
+        res.status(200).json(data);
     })
 })
 
