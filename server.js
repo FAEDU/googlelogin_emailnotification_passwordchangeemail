@@ -204,7 +204,6 @@ app.get('/topuniversity',(req,res)=>{
             }
         }
         res.status(200).json(user)
-        
     })
 })
 
