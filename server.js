@@ -168,7 +168,7 @@ app.get('/sendemailtostudent/:email',notify,(req,res)=>{
 })
 
 app.get('/event_reg/:email/:name',eve,(req,res)=>{
-    res.status(200).josn("sent");
+    res.status(200).jssn("sent");
 })
 
 
