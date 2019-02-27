@@ -61,7 +61,7 @@ const eve=(req,res,next)=>{
     }
     transporter.sendMail(mailoption,(err,res)=>{
         if(err)
-            res.status(400).josn(err);
+            res.status(400).json(err);
         else
             next();
     })
@@ -168,7 +168,7 @@ app.get('/sendemailtostudent/:email',notify,(req,res)=>{
 })
 
 app.get('/event_reg/:email/:name',eve,(req,res)=>{
-    res.status(200).jssn("sent");
+    res.status(200).json("sent");
 })
 
 
