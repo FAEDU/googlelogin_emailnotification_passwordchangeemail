@@ -72,7 +72,7 @@ const reset=(email,string)=>{
         from:'foreignadmitsweb@gmail.com',
         to:email,
         subject:"Foreign Admits reset your passoword",
-        html:'<p>Click the link for Resetting your password<a href="https://warm-inlet-93009.herokuapp.com/reset/'+string+'/'+email+'">Verify</a></p>'
+        html:'<p>Click the link for Resetting your password<a href="https://blooming-dusk-14947.herokuapp.com/reset/'+string+'/'+email+'">Verify</a></p>'
     }
     transporter.sendMail(mailoption,(err,res)=>{
         if(err)
@@ -118,7 +118,7 @@ cron.schedule('0 0 */3 * * *',()=>{
     const time=samay.split(' ')[1];
     console.log(samay)
     const date=samay.split(' ')[0];
-    axios.get('https://glacial-citadel-47306.herokuapp.com/api/Appointments').then(res=>{
+    axios.get('https://blooming-dusk-14947.herokuapp.com/api/Appointments').then(res=>{
         if(res.status===200){
             //console.log(res.data)
             res.data.map(i=>{
